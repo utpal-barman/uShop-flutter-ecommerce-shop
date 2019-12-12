@@ -14,12 +14,12 @@ class Product with ChangeNotifier {
     @required this.description,
     @required this.price,
     @required this.imageUrl,
-    this.isFavourite = true,
+    this.isFavourite = false,
   });
 
   void toggleFavorite() {
-    print("this item is favorite - $isFavourite");
     isFavourite = !isFavourite;
+    print("this item is favorite - $isFavourite");
     notifyListeners();
   }
 }

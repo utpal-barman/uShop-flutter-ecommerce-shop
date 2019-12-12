@@ -11,8 +11,10 @@ class ProductTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(8.0),
       child: InkWell(
         onTap: () {
-          Navigator.of(context)
-              .pushNamed(ProductDetailScreen.routeName, arguments: product.id);
+          Navigator.of(context).pushNamed(
+            ProductDetailScreen.routeName,
+            arguments: product.id,
+          );
         },
         child: GridTile(
           child: Image.network(
@@ -23,7 +25,7 @@ class ProductTile extends StatelessWidget {
             backgroundColor: Colors.black87,
             leading: IconButton(
               icon: Icon(
-                  product.isFavourite ? Icons.favorite_border : Icons.favorite),
+                  product.isFavourite ? Icons.favorite : Icons.favorite_border),
               color: Theme.of(context).accentColor,
               onPressed: () {
                 //toggle here

@@ -37,7 +37,11 @@ class Products with ChangeNotifier {
     ),
   ];
 
+  var isFavoriteTapped = false;
+
   List<Product> get items {
+    if (isFavoriteTapped)
+      return _items.where((product) => product.isFavourite).toList();
     return [..._items];
   }
 
@@ -45,8 +49,15 @@ class Products with ChangeNotifier {
     return _items.firstWhere((p) => p.id == productId);
   }
 
-  void addProducts() {
-    //_items.add(value);
+  void showFavorite() {
+    isFavoriteTapped = true;
+    print("show favourite flag ON");
+    notifyListeners();
+  }
+
+  void showAll() {
+    isFavoriteTapped = false;
+    print("show favourite flag OFF");
     notifyListeners();
   }
 }

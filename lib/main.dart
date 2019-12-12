@@ -35,6 +35,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
+enum PopupValue {
+  showFavorite,
+  showAll,
+}
+
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -42,20 +47,28 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productContainer = Provider.of<Products>(context);
     return Scaffold(
       appBar: AppBar(
         //leading: Icon(Icons.menu),
         actions: <Widget>[
           PopupMenuButton(
+            onSelected: (_popupValue) {
+              if (_popupValue == PopupValue.showFavorite) {
+                productContainer.showFavorite();
+              } else {
+                productContainer.showAll();
+              }
+            },
             icon: Icon(Icons.more_vert),
             itemBuilder: (_) => [
               PopupMenuItem(
                 child: Text("Only Favorite"),
-                value: 0,
+                value: PopupValue.showFavorite,
               ),
               PopupMenuItem(
                 child: Text("Show All"),
-                value: 1,
+                value: PopupValue.showAll,
               ),
             ],
           ),
