@@ -2,7 +2,11 @@
 
 An cross platform mobile app using Flutter. This application is an Online Shopping demo.
 
-## Getting Started
+To start with this application, install VS code or Android Studio.
 
-This project is a starting point for a Flutter application.
+Install Flutter SDK and then pull this project directly to your project.
+
+
+
+
 
