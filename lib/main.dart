@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:u_shop/providers/cart.dart';
 import 'package:u_shop/providers/products.dart';
+import 'package:u_shop/screens/cart_screen.dart';
+import 'package:u_shop/screens/place_order_screen.dart';
 import 'package:u_shop/screens/product_detail_screen.dart';
 import 'package:u_shop/screens/product_overview_screen.dart';
+import 'package:u_shop/widgets/badge.dart';
 import 'package:u_shop/widgets/drawer_menu.dart';
 
 void main() => runApp(MyApp());
@@ -11,8 +15,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => Products(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: Products(),
+        ),
+        ChangeNotifierProvider.value(
+          value: Cart(),
+        ),
+      ],
       child: MaterialApp(
         title: 'UShop',
         theme: ThemeData(
@@ -28,6 +39,8 @@ class MyApp extends StatelessWidget {
         //register all routes here
         routes: {
           ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+          CartScreen.routeName: (context) => CartScreen(),
+          PlaceOrderScreen.routeName: (context) => PlaceOrderScreen(),
         },
         debugShowCheckedModeBanner: false,
       ),
@@ -48,10 +61,19 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productContainer = Provider.of<Products>(context);
+    final cart = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(
-        //leading: Icon(Icons.menu),
         actions: <Widget>[
+          Badge(
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
+            ),
+            value: cart.itemCount.toString(),
+          ),
           PopupMenuButton(
             onSelected: (_popupValue) {
               if (_popupValue == PopupValue.showFavorite) {

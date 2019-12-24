@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:u_shop/model/product.dart';
+import 'package:u_shop/providers/cart.dart';
 import 'package:u_shop/screens/product_detail_screen.dart';
 
 class ProductTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context);
+    final cart = Provider.of<Cart>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(8.0),
       child: InkWell(
@@ -17,9 +19,12 @@ class ProductTile extends StatelessWidget {
           );
         },
         child: GridTile(
-          child: Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
+          child: Hero(
+            tag: product.id,
+            child: Image.network(
+              product.imageUrl,
+              fit: BoxFit.cover,
+            ),
           ),
           footer: GridTileBar(
             backgroundColor: Colors.black87,
@@ -38,7 +43,9 @@ class ProductTile extends StatelessWidget {
             ),
             trailing: IconButton(
               icon: Icon(Icons.shopping_cart),
-              onPressed: () {},
+              onPressed: () {
+                cart.addItem(product.id, product.price, product.title);
+              },
             ),
           ),
         ),
