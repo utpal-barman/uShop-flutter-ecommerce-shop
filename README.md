@@ -1,4 +1,4 @@
-# u_shop
+# uShop
 
 A cross platform mobile app using Flutter. This application is an Online Shopping demo.
 
