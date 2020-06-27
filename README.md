@@ -58,7 +58,7 @@ To learn more about me, join the conversation:
 - [Skype](https://join.skype.com/invite/YKZe1ad0yuyK)
 - [Telegram](https://t.me/utpal_barman)
 - [Facebook](https://www.facebook.com/utpal777)
-- [Instragram](https://www.instagram.com/utpal_barman_/)
+- [Instagram](https://www.instagram.com/utpal_barman_/)
 
 ## Contributor
 
@@ -73,4 +73,4 @@ To learn more about me, join the conversation:
 
 
 ## License
-UShop is available under the [MIT license](https://www.mit.edu/~amini/LICENSE.md). Free for commercial and non-commercial use.
+UShop is available under the MIT license. Free for commercial and non-commercial use.
